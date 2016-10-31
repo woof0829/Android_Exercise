@@ -14,15 +14,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText title;
     private EditText content;
     private DatabaseHandler dbh;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbh = new DatabaseHandler(this);
+        dbh = new DatabaseHandler(MainActivity.this);
         title = (EditText) findViewById(R.id.editTitle);
         content = (EditText) findViewById(R.id.daiaryEdit);
-        Button saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

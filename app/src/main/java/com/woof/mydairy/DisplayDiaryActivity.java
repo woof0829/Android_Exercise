@@ -1,11 +1,6 @@
 package com.woof.mydairy;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import data.DatabaseHandler;
 import model.MyDiary;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class DisplayDiaryActivity extends AppCompatActivity {
+
+public class DisplayDiaryActivity extends Activity {
     private ArrayList<MyDiary> dbDiary = new ArrayList<>();
     private ListView listView;
     private DiaryAdapter diaryAdapter;
@@ -37,7 +31,7 @@ public class DisplayDiaryActivity extends AppCompatActivity {
     }
 
     private void refreshData() {
-        dbDiary.clear();
+        dbDiary.clear();//清空Listview
         dbh = new DatabaseHandler(getApplicationContext());
         ArrayList<MyDiary> diaryFromDB = dbh.getDiary();
         for (MyDiary aDiaryFromDB : diaryFromDB) {
@@ -46,6 +40,7 @@ public class DisplayDiaryActivity extends AppCompatActivity {
             String content = aDiaryFromDB.getContent();
             String date = aDiaryFromDB.getRecordDate();
 
+            Log.v("test", title);
             MyDiary myDiary = new MyDiary();
             myDiary.setTitle(title);
             myDiary.setContent(content);
@@ -98,15 +93,16 @@ public class DisplayDiaryActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             //ViewHolder
             View row = convertView;
-            ViewHolder holder = null;
-            if (row == null || row.getTag() == null || holder == null){
+            ViewHolder holder;
+            holder = null;
+            if (row == null || (row.getTag()) == null){
                 LayoutInflater inflater = LayoutInflater.from(activity);
 
                 row = inflater.inflate(layoutResource, null);
                 holder = new ViewHolder();
 
-                holder.mTitle = (TextView) findViewById(R.id.title);
-                holder.mDate = (TextView) findViewById(R.id.date);
+                holder.mTitle = (TextView) row.findViewById(R.id.title);
+                holder.mDate = (TextView) row.findViewById(R.id.date);
                 row.setTag(holder);
             }else {
                 holder = (ViewHolder) row.getTag();
