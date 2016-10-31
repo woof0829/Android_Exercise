@@ -10,16 +10,16 @@
             android:src="@android:drawable/ic_menu_agenda"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     <TextView
-            android:id="@+id/name"
+            android:id="@+id/title"
             android:layout_marginLeft="5dp"
-            android:text="text title"
+            android:text="diary title"
             android:textSize="13sp"
             android:layout_toRightOf="@+id/rowImage"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     <TextView
             android:id="@+id/date"
             android:text="date"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/title"
             android:layout_toRightOf="@+id/rowImage"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>

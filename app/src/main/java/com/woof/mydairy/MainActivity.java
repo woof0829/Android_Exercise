@@ -13,16 +13,16 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText title;
     private EditText content;
-    private Button saveButton;
     private DatabaseHandler dbh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbh = new DatabaseHandler(MainActivity.this);
+        dbh = new DatabaseHandler(this);
         title = (EditText) findViewById(R.id.editTitle);
         content = (EditText) findViewById(R.id.daiaryEdit);
-        saveButton = (Button) findViewById(R.id.saveButton);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         diary.setContent(content.getText().toString().trim());
 
         dbh.addDiary(diary);
-//        dbh.close();
+        dbh.close();
 
         title.setText("");
         content.setText("");

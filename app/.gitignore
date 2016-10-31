@@ -1,2 +1,6 @@
 /build
 /app/build
+/.gradle
+/.idea
+gradlew.bat
+local.preperties
